@@ -1,0 +1,13 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    margin: 20px;
+}
+
+.operator {
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    margin-left: 10px;
+}
+

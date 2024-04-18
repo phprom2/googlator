@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Googlator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-7">
+                <h1 style="padding: 2%;">🧐 Googlator</h1>
+            </div>
+            <div class="col-5">
+                <div id="alertContainer" class="alert-container"></div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-6">
+                <form id="searchForm">
+                    <div class="operator">
+                        <label for="beforeOperator">Search : </label>
+                        <input type="text" id="searchValue" placeholder="Enter your search">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="beforeOperator" onchange="toggleInputVisibility('beforeValue')">
+                        <label for="beforeOperator">Before </label><i class="bi bi-info-circle" style="margin: 1%;" title="Date avant laquelle vous cherchez les résultats."></i>
+                        <input type="date" id="beforeValue" placeholder="Enter date" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="afterOperator" onchange="toggleInputVisibility('afterValue')">
+                        <label for="afterOperator">After</label><i class="bi bi-info-circle" style="margin: 1%;" title="Date après laquelle vous cherchez les résultats."></i>
+                        <input type="date" id="afterValue" placeholder="Enter date" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="filetypeOperator" onchange="toggleInputVisibility('filetypeValue')">
+                        <label for="filetypeOperator">Filetype</label><i class="bi bi-info-circle" style="margin: 1%;" title="Type de fichier que vous voulez chercher&#10;Exemple : pdf, xlsx"></i>
+                        <input type="text" id="filetypeValue" placeholder="Enter filetype" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="allintextOperator" onchange="toggleInputVisibility('allintextValue')">
+                        <label for="allintextOperator">Allintext</label><i class="bi bi-info-circle" style="margin: 1%;" title="Recherche dans le corps des pages HTML (<body>) et cherche à l'intérieurs les mots que vous lui placez."></i>
+                        <input type="text" id="allintextValue" placeholder="Enter search term" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="intextOperator" onchange="toggleInputVisibility('intextValue')">
+                        <label for="intextOperator">Intext</label><i class="bi bi-info-circle" style="margin: 1%;" title="Recherche dans le corps des pages HTML (<body>) et cherche à l'intérieurs le mot que vous lui placez."></i>
+                        <input type="text" id="intextValue" placeholder="Enter search term" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="allintitleOperator" onchange="toggleInputVisibility('allintitleValue')">
+                        <label for="allintitleOperator">Allintitle</label><i class="bi bi-info-circle" style="margin: 1%;" title="Recherche dans le titre des pages HTML (<title>) et cherche à l'intérieurs les mots que vous lui placez."></i>
+                        <input type="text" id="allintitleValue" placeholder="Enter search term" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="intitleOperator" onchange="toggleInputVisibility('intitleValue')">
+                        <label for="intitleOperator">Intitle</label><i class="bi bi-info-circle" style="margin: 1%;" title="Recherche dans le titre des pages HTML (<title>) et cherche à l'intérieurs le mot que vous lui placez."></i>
+                        <input type="text" id="intitleValue" placeholder="Enter search term" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="allinurlOperator" onchange="toggleInputVisibility('allinurlValue')">
+                        <label for="allinurlOperator">Allinurl</label><i class="bi bi-info-circle" style="margin: 1%;" title="Recherche dans l'url des pages HTML (www.google.com/bonjour/salut) et cherche à l'intérieurs les mots que vous lui placez."></i>
+                        <input type="text" id="allinurlValue" placeholder="Enter search term" style="display:none;">
+                    </div>
+                    <div class="operator">
+                        <input type="checkbox" id="inurlOperator" onchange="toggleInputVisibility('inurlValue')">
+                        <label for="inurlOperator">Inurl</label><i class="bi bi-info-circle" style="margin: 1%;" title="Recherche dans l'url des pages HTML (www.google.com/bonjour/salut) et cherche à l'intérieurs le mot que vous lui placez."></i>
+                        <input type="text" id="inurlValue" placeholder="Enter search term" style="display:none;">
+                    </div>
+                    <button onclick="generateQuery()" type="button" class="btn btn-primary">Generate Search Query</button>
+                    <button onclick="resetForm()" type="button" class="btn btn-secondary" type="reset" value="Reset">Reset</button>
+                </form>
+            </div>
+            <div class="col-6">
+                <div id="result">
+                    <label for="generated">Generated search : </label>
+                    <input type="text" id="queryResult" readonly>
+                    <button onclick="copyToClipboard()" type="button" class="btn btn-outline-success">Copy</button>
+                    <button onclick="openInNewTab()" class="btn btn-success">Open in a new tab</button>
+                </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+      </div>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+<footer>
+    <blockquote class="blockquote text-center">
+        <p>
+            <small>
+                Made with <i style = "color:red;" class="bi bi-suit-heart-fill"></i> by <a target=”_blank” href="https://phprom1.fr">@phprom1</a>
+            </small>
+        </p>
+    </blockquote>
+</footer>
+</html>
