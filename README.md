@@ -1,6 +1,26 @@
 
 # Googlator
 
-Just launch it and enjoy.
+Really simple google dork generator, perfect for OSINT.
 
-![App Screenshot](https://ih1.redbubble.net/image.2724419276.8470/flat,750x,075,f-pad,750x1000,f8f8f8.jpg)
+
+
+![App Screenshot](https://cdn.discordapp.com/attachments/691744951868063784/1230489253947899904/capture.gif?ex=6633816b&is=66210c6b&hm=02354f6a65e31584ffafcbed19837ead980e6d11369f2819d0c9c801a7ce3970&)
+
+## Installation
+
+Juste open in your browser ```index.html```
+
+    
+## Features
+
+- Before
+- After
+- Filetype
+- Allintext
+- Intext
+- Allintitle
+- Intitle
+- Allinurl
+- Inurl
+
