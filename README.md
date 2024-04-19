@@ -9,7 +9,7 @@ Really simple google dork generator, perfect for OSINT.
 
 ## Installation
 
-Juste open in your browser ```index.html```
+Just open in your browser ```index.html```
 
     
 ## Features
